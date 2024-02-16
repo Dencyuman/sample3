@@ -4,13 +4,11 @@
 set -e
 
 # server_nameをコマンドラインから入力
-#  → サーバーのドメイン名またはパブリックIPアドレスを入力
 read -p "Enter your server_name (domain or public IP): " server_name
 
 # Nginxのインストール
 echo "Installing Nginx..."
-sudo yum update -y
-sudo yum install -y nginx
+sudo amazon-linux-extras install -y nginx1
 
 # Nginx設定ファイルの作成
 NGINX_CONF="/etc/nginx/conf.d/my_fastapi_app.conf"
@@ -26,10 +24,6 @@ echo "server {
         proxy_set_header X-Forwarded-Proto \$scheme;
     }
 }" | sudo tee $NGINX_CONF
-
-# 既存のデフォルト設定を無効化（もし必要なら）
-# sudo rm -f /etc/nginx/sites-enabled/default
-# sudo rm -f /etc/nginx/sites-available/default
 
 # Nginxの設定をテスト
 echo "Testing Nginx configuration..."

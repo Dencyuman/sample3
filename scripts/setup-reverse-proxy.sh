@@ -34,3 +34,4 @@ echo "Restarting Nginx..."
 sudo systemctl restart nginx
 
 echo "Nginx has been configured successfully."
+echo "You can access your FastAPI app at http://$server_name"

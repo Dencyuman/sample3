@@ -4,16 +4,16 @@
 set -e
 
 # server_nameをコマンドラインから入力
+#  → サーバーのドメイン名またはパブリックIPアドレスを入力
 read -p "Enter your server_name (domain or public IP): " server_name
 
 # Nginxのインストール
 echo "Installing Nginx..."
-sudo apt-get update
-sudo apt-get install -y nginx
+sudo yum update -y
+sudo yum install -y nginx
 
 # Nginx設定ファイルの作成
-NGINX_CONF="/etc/nginx/sites-available/my_fastapi_app"
-sudo touch $NGINX_CONF
+NGINX_CONF="/etc/nginx/conf.d/my_fastapi_app.conf"
 echo "server {
     listen 80;
     server_name $server_name;  # ユーザー入力を反映
@@ -27,9 +27,9 @@ echo "server {
     }
 }" | sudo tee $NGINX_CONF
 
-# シンボリックリンクを作成して設定を有効化
-echo "Enabling configuration..."
-sudo ln -sfn /etc/nginx/sites-available/my_fastapi_app /etc/nginx/sites-enabled/
+# 既存のデフォルト設定を無効化（もし必要なら）
+# sudo rm -f /etc/nginx/sites-enabled/default
+# sudo rm -f /etc/nginx/sites-available/default
 
 # Nginxの設定をテスト
 echo "Testing Nginx configuration..."
@@ -40,4 +40,3 @@ echo "Restarting Nginx..."
 sudo systemctl restart nginx
 
 echo "Nginx has been configured successfully."
-echo "You can access your FastAPI app at http://$server_name"

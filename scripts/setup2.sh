@@ -8,3 +8,5 @@ pyenv global 3.11
 
 # pipenvのインストール
 pip install pipenv
+cd ../
+pipenv install

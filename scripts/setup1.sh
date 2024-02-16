@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# 手動部分
 # gitのインストール
-sudo yum update -y
-sudo yum install git -y
+# sudo yum update -y
+# sudo yum install git -y
+# git clone https://github.com/Dencyuman/sample3.git
 
 # 開発に必要な依存関係のインストール
 sudo yum install gcc -y

@@ -10,3 +10,4 @@ pyenv global 3.11
 pip install pipenv
 cd ../
 pipenv install
+cd ./scripts/

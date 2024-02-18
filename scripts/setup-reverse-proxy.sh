@@ -4,6 +4,7 @@
 set -e
 
 # server_nameをコマンドラインから入力
+# パブリックipかドメイン名を入力してください
 read -p "Enter your server_name (domain or public IP): " server_name
 
 # Nginxのインストール
